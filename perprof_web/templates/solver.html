@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Perprof-py - Solver {{ solver.algname }}
+{% endblock %}
+
+{% block content %}
+<h1 class="is-size-3">Solver details</h1>
+
+Go back to <a href="{{ url_for('show_solvers') }}">solvers overview</a>.
+
+<ul>
+  <li>Name: {{ solver.algname }}</li>
+</ul>
+
+<h2 class="is-size-4">Table:</h2>
+
+{{ solver.data.to_html(classes="table is-striped", border=0, justify="left")|safe }}
+
+{% endblock %}

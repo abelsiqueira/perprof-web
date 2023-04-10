@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Perprof-py
+{% endblock %}
+
+{% block content %}
+<h1 class="is-size-3">perprof-web</h1>
+
+<p>
+  Welcome to perprof-web, a simple web interface for <a href="https://abelsiqueira.com/perprof-py">perprof-py</a>.
+</p>
+
+<p>
+  For more details, you can check our reference:
+</p>
+
+<blockquote>
+  Siqueira, A. S., Costa da Silva, R. G. and Santos, L.-R., (2016). Perprof-py: A Python Package for Performance Profile of Mathematical Optimization Software. Journal of Open Research Software. 4(1), p.e12. DOI: 10.5334/jors.81.
+</blockquote>
+
+<p>
+  Please cite us using the reference above if you use our software.
+</p>
+
+<h2 class="is-size-4">Usage</h2>
+
+<p>
+  Just go to the <a href="{{ url_for('show_solvers') }}">solvers overview</a> tab and upload the tables related to your solvers.
+</p>
+{% endblock %}

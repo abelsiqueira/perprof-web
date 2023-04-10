@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %} {% endblock %}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <script src="https://kit.fontawesome.com/d17d5e5245.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        perprof-py
+      </a>
+    </div>
+
+    <div class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="{{ url_for('home') }}">
+          Home
+        </a>
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="{{ url_for('show_solvers') }}">
+            Solvers
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="{{ url_for('show_solvers') }}">
+              Overview
+            </a>
+            {% if (solvers | length) > 0 %}
+            <hr class="navbar-divider">
+            {% for solver in solvers %}
+              <a class="navbar-item" href="{{ url_for('show_solvers') }}/{{ loop.index0 }}">
+                {{ solver.algname }}
+              </a>
+            {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">
+      <div class="content">
+        {% block content %} {% endblock %}
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>
