@@ -11,7 +11,7 @@ In this page you can upload solvers and see the performance profile.
 
 <h2 class="is-size-4">Upload .csv or .table files</h2>
 
-<form method="POST" enctype="multipart/form-data" action="/solvers" id="upload-form">
+<form method="POST" enctype="multipart/form-data" action="{{ url_for('show_solvers') }}" id="upload-form">
   <div class="field is-grouped">
     <div class="control">
       <div class="file is-primary has-name" id="file-upload">
@@ -32,8 +32,8 @@ In this page you can upload solvers and see the performance profile.
       </div>
     </div>
     <div class="control">
-      <button class="button is-primary" type="submit" value="Upload file">
-        Upload life
+      <button class="button is-primary" type="submit" name="action" value="upload">
+        Upload file
       </button>
     </div>
   </div>
@@ -101,24 +101,24 @@ In this page you can upload solvers and see the performance profile.
 
   <div class="column">
     <div class="box">
-      <div class="form">
+      <form class="form" action="{{ url_for('show_solvers') }}" method="POST">
         <div class="field">
           <label class="label">Title:</label>
-          <input class="input" placeholder="title" type="text" name="title" value="">
+          <input class="input" placeholder="title" type="text" name="title" value="{{ plot_options['title'] }}">
         </div>
 
         <div class="field">
           <label class="label">x-label:</label>
-          <input class="input" placeholder="x-label" type="text" name="xlabel" value="">
+          <input class="input" placeholder="x-label" type="text" name="xlabel" value="{{ plot_options['xlabel'] }}">
         </div>
 
         <div class="field">
           <label class="label">y-label:</label>
-          <input class="input" placeholder="y-label" type="text" name="ylabel" value="">
+          <input class="input" placeholder="y-label" type="text" name="ylabel" value="{{ plot_options['ylabel'] }}">
         </div>
 
         <div class="field">
-          <button class="button is-primary" type="submit" name="update" value="update">
+          <button class="button is-info" type="submit" name="action" value="update">
             <span class="icon">
               <i class="fas fa-sync"></i>
             </span>
@@ -132,7 +132,7 @@ In this page you can upload solvers and see the performance profile.
             <span>Download</span>
           </a>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 

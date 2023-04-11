@@ -1,7 +1,6 @@
 """Main file."""
 
 
-import logging
 import os
 
 from flask import Flask, redirect, render_template, request, url_for
@@ -23,6 +22,19 @@ app.config["UPLOAD_FOLDER"] = os.path.join(os.path.dirname(__file__), UPLOAD_FOL
 app.secret_key = "This is your secret key to utilize session in Flask"
 
 solvers = []
+# For debugging purposes:
+# solvers = [
+#     read_table(os.path.join(app.config["UPLOAD_FOLDER"], "alpha.table")),
+#     read_table(os.path.join(app.config["UPLOAD_FOLDER"], "beta.table")),
+#     read_table(os.path.join(app.config["UPLOAD_FOLDER"], "gamma.table")),
+# ]
+
+plot_options = {
+    "title": "Performance Profile",
+    "xlabel": "Performance ratio",
+    "ylabel": "Percentage of problems solved",
+    "semilogx": True,
+}
 
 
 @app.route("/")
@@ -38,31 +50,43 @@ def home():
 def show_solvers():
     """Main page for solvers."""
     if request.method == "POST":
-        # upload file flask
-        uploaded_file = request.files["uploaded-file"]
-        filename = secure_filename(uploaded_file.filename)
-        savepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
-        uploaded_file.save(savepath)
+        action = request.form.get("action")
 
-        ext = filename.split(".")[-1]
-        if ext == "csv":
-            solvers.append(
-                SolverData(
-                    f"Unnamed solver {len(solvers) + 1}",
-                    savepath,
+        if action == "upload":
+            # upload file flask
+            uploaded_file = request.files["uploaded-file"]
+            filename = secure_filename(uploaded_file.filename)
+            savepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+            uploaded_file.save(savepath)
+
+            ext = filename.split(".")[-1]
+            if ext == "csv":
+                solvers.append(
+                    SolverData(
+                        f"Unnamed solver {len(solvers) + 1}",
+                        savepath,
+                    )
                 )
-            )
-        elif ext == "table":
-            solvers.append(read_table(savepath))
+            elif ext == "table":
+                solvers.append(read_table(savepath))
+            else:
+                # TODO: Treat correctly using Flask
+                raise ValueError(f"Bad {filename}. Unexpected extension {ext}.")
+        elif action == "update":
+            for field in ["title", "xlabel", "ylabel"]:
+                current_value = plot_options[field]
+                new_value = request.form.get(field)
+                if new_value != current_value:
+                    plot_options[field] = new_value
         else:
-            # TODO: Treat correctly using Flask
-            raise ValueError(f"Bad {filename}. Unexpected extension {ext}.")
+            raise ValueError(f"Unexpected action {action}")
 
-    plot_data = matplotlib_performance_profile(solvers)
+    plot_data = matplotlib_performance_profile(solvers, plot_options)
 
     return render_template(
         "solvers.html",
         plot_data=plot_data,
+        plot_options=plot_options,
         solvers=solvers,
     )
 
@@ -80,7 +104,6 @@ def show_solver(solver_id):
 @app.route("/update/solver/<int:solver_id>", methods=["POST"])
 def update_solver(solver_id):
     """Delete or update a solver."""
-    logging.warning(request.form)
     action = request.form.get("action")
 
     if action == "delete":
