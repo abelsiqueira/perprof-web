@@ -33,7 +33,7 @@ plot_options = {
     "title": "Performance Profile",
     "xlabel": "Performance ratio",
     "ylabel": "Percentage of problems solved",
-    "semilogx": True,
+    "semilogx": "checked",
 }
 
 
@@ -78,6 +78,8 @@ def show_solvers():
                 new_value = request.form.get(field)
                 if new_value != current_value:
                     plot_options[field] = new_value
+
+            plot_options["semilogx"] = request.form.get("semilogx")
         else:
             raise ValueError(f"Unexpected action {action}")
 

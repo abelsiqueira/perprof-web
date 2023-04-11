@@ -39,7 +39,8 @@ def matplotlib_performance_profile(solvers, plot_options):
             label=solver.algname,
         )
 
-    axis.set_xscale("log")
+    if plot_options["semilogx"]:
+        axis.set_xscale("log")
     axis.set_xlim(profile_data.breakpoints.min(), profile_data.breakpoints.max())
     axis.set_ylim(-0.02, 1.04)
     axis.set_title(plot_options["title"])

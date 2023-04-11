@@ -118,6 +118,11 @@ In this page you can upload solvers and see the performance profile.
         </div>
 
         <div class="field">
+          <label class="label">Log scale on x?</label>
+          <input type="checkbox" name="semilogx" value="checked" {{ plot_options['semilogx'] }}>
+        </div>
+
+        <div class="field">
           <button class="button is-info" type="submit" name="action" value="update">
             <span class="icon">
               <i class="fas fa-sync"></i>
