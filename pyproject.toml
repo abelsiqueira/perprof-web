@@ -17,7 +17,7 @@ classifiers = [
 ]
 dependencies = [
   "flask>=2,<3",
-  "perprof-py>=1.1.3,<2",
+  "perprof-py>=1.1.4,<2",
   "matplotlib>=3,<4",
 ]
 version = "0.0.1"
