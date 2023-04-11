@@ -1,14 +1,12 @@
 """Main file."""
 
-import base64
+
 import logging
 import os
-from io import BytesIO
 
 from flask import Flask, redirect, render_template, request, url_for
-from matplotlib.figure import Figure
-from perprof.profile_data import ProfileData
 from perprof.solver_data import SolverData, read_table
+from plotting import matplotlib_performance_profile
 from werkzeug.utils import secure_filename
 
 # Define folder to save uploaded files to process further
@@ -60,31 +58,11 @@ def show_solvers():
             # TODO: Treat correctly using Flask
             raise ValueError(f"Bad {filename}. Unexpected extension {ext}.")
 
-    fig = Figure()
-    axis = fig.subplots()
-
-    if len(solvers) >= 2:
-        profile_data = ProfileData(*solvers)
-        for i, solver in enumerate(solvers):
-            axis.plot(
-                profile_data.breakpoints,
-                profile_data.cumulative[:, i],
-                label=solver.algname,
-            )
-
-        axis.set_xscale("log")
-        axis.set_xlim(profile_data.breakpoints.min(), profile_data.breakpoints.max())
-        axis.set_ylim(-0.02, 1.04)
-        axis.legend()
-
-    output = BytesIO()
-    fig.savefig(output, format="png")
-
-    data = base64.b64encode(output.getbuffer()).decode("ascii")
+    plot_data = matplotlib_performance_profile(solvers)
 
     return render_template(
         "solvers.html",
-        plot_data=data,
+        plot_data=plot_data,
         solvers=solvers,
     )
 
