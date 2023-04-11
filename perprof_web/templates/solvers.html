@@ -102,6 +102,8 @@ In this page you can upload solvers and see the performance profile.
   <div class="column">
     <div class="box">
       <form class="form" action="{{ url_for('show_solvers') }}" method="POST">
+        <h3 class="is-size-5">Plot options</h3>
+
         <div class="field">
           <label class="label">Title:</label>
           <input class="input" placeholder="title" type="text" name="title" value="{{ plot_options['title'] }}">
@@ -118,8 +120,18 @@ In this page you can upload solvers and see the performance profile.
         </div>
 
         <div class="field">
-          <label class="label">Log scale on x?</label>
-          <input type="checkbox" name="semilogx" value="checked" {{ plot_options['semilogx'] }}>
+          <label class="label">
+            <input type="checkbox" name="semilogx" value="checked" {{ plot_options['semilogx'] }}>
+            Log scale on x?
+          </label>
+        </div>
+
+        <div class="field">
+          <label class="label">Dimensions:</label>
+          <div class="field is-grouped">
+            <input class="input" type="text" name="width" value="{{ plot_options['width'] }}">
+            <input class="input" type="text" name="height" value="{{ plot_options['height'] }}">
+          </div>
         </div>
 
         <div class="field">

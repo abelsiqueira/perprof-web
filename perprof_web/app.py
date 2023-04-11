@@ -34,6 +34,8 @@ plot_options = {
     "xlabel": "Performance ratio",
     "ylabel": "Percentage of problems solved",
     "semilogx": "checked",
+    "width": "800",
+    "height": "500",
 }
 
 
@@ -73,7 +75,7 @@ def show_solvers():
                 # TODO: Treat correctly using Flask
                 raise ValueError(f"Bad {filename}. Unexpected extension {ext}.")
         elif action == "update":
-            for field in ["title", "xlabel", "ylabel"]:
+            for field in ["title", "xlabel", "ylabel", "width", "height"]:
                 current_value = plot_options[field]
                 new_value = request.form.get(field)
                 if new_value != current_value:

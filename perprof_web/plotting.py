@@ -6,6 +6,8 @@ from io import BytesIO
 from matplotlib.figure import Figure
 from perprof.profile_data import ProfileData
 
+DPI = 96
+
 
 def matplotlib_performance_profile(solvers, plot_options):
     """Plot the performance profile using matplotlib.
@@ -23,7 +25,13 @@ def matplotlib_performance_profile(solvers, plot_options):
     Returns:
         plot_data: Data converted into a base64 format to use with flask.
     """
-    fig = Figure()
+    fig = Figure(
+        figsize=(
+            float(plot_options["width"]) / DPI,
+            float(plot_options["height"]) / DPI,
+        ),
+        dpi=DPI,
+    )
     axis = fig.subplots()
 
     if len(solvers) < 2:
