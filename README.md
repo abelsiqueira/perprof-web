@@ -19,11 +19,11 @@ describes this project:
 
 ## Install
 
-Soon...
+TODO: Add installation information for the end-user.
 
 ## How to use
 
-Soon...
+TODO: Add a simple way to run for the end-user.
 
 ## Getting Help
 
