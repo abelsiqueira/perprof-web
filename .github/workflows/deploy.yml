@@ -47,7 +47,7 @@ jobs:
 
       - name: Pre-requisites
         run: |
-          pip install --upgrade pip setuptools
+          pip install --upgrade pip setuptools build
           pip install '.[publishing]'
 
       - name: Build
