@@ -12,7 +12,7 @@ pip install --no-cache-dir -e '.[dev]'
 ## Running
 
 ```bash
-flask --app perprof_web/app.py run
+flask --app perprof_web run
 ```
 
 ## Linting

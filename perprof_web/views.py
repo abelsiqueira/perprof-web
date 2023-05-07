@@ -3,23 +3,12 @@
 
 import os
 
-from flask import Flask, redirect, render_template, request, url_for
+from flask import redirect, render_template, request, url_for
 from perprof.solver_data import SolverData, read_table
-from plotting import matplotlib_performance_profile
 from werkzeug.utils import secure_filename
 
-# Define folder to save uploaded files to process further
-UPLOAD_FOLDER = os.path.join("uploads")
-
-# Define allowed files (for this example I want only csv file)
-ALLOWED_EXTENSIONS = {"csv", "table"}
-
-app = Flask(__name__)
-# Configure upload file path flask
-app.config["UPLOAD_FOLDER"] = os.path.join(os.path.dirname(__file__), UPLOAD_FOLDER)
-
-# Define secret key to enable session
-app.secret_key = "This is your secret key to utilize session in Flask"
+from perprof_web import app
+from perprof_web.plotting import matplotlib_performance_profile
 
 solvers = []
 # For debugging purposes:
