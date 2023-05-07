@@ -6,7 +6,13 @@ Internal changes will frequently not be included here.
 The format is based on [Keep a Changelog],
 and this project adheres to [Semantic Versioning].
 
-## [Unreleased]
+## [unreleased]
+
+### Added
+
+- Create Docker image
+
+## [0.0.1]
 
 ### Added
 
@@ -17,7 +23,6 @@ and this project adheres to [Semantic Versioning].
 [semantic versioning]: https://semver.org/spec/v2.0.0.html
 
 <!-- Versions -->
-<!--
-[unreleased]: https://github.com/abelsiqueira/perprof-py/compare/v0.0.1...HEAD
-[0.0.1]: https://github.com/abelsiqueira/perprof-py/releases/tag/v1.0.0
--->
+<!-- markdown-link-check-disable -->
+[unreleased]: https://github.com/abelsiqueira/perprof-web/compare/v0.0.1...HEAD
+[0.0.1]: https://github.com/abelsiqueira/perprof-web/releases/tag/v0.0.1

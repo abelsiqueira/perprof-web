@@ -19,11 +19,15 @@ describes this project:
 
 ## Install
 
-TODO: Add installation information for the end-user.
+Use `perprof-web` from Docker if you just want to use it.
 
 ## How to use
 
-TODO: Add a simple way to run for the end-user.
+Run perprof-web using Docker with
+
+```bash
+docker run -p 5000:5000 abelsiqueira/perprof-web
+```
 
 ## Getting Help
 

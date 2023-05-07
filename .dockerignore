@@ -1,0 +1,7 @@
+build
+dist
+docker
+env
+perprof_web/__pycache__
+perprof_web/uploads
+perprof_web.egg-info
