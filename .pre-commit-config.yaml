@@ -12,7 +12,7 @@ repos:
     rev: v0.12.0
     hooks:
       - id: markdownlint
-        args: [ -r, "~MD013,~MD029,~MD024" ]
+        args: [-r, "~MD013,~MD029,~MD024"]
         exclude: "^.git"
   - repo: https://github.com/tcort/markdown-link-check
     rev: v3.11.0
@@ -40,13 +40,11 @@ repos:
     rev: v0.7.3
     hooks:
       - id: pydocstringformatter
-  - repo: local
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: v0.0.269
     hooks:
-      - id: prospector
-        name: prospector
-        entry: prospector
-        language: system
-        types: [python]
+      - id: ruff
   - repo: https://github.com/PyCQA/isort
     rev: 5.12.0
     hooks:

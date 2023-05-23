@@ -26,7 +26,7 @@ version = "0.0.1"
 dev = [
   "black",
   "pre-commit",
-  "prospector[with_pyroma]",
+  "ruff",
   "pylint",
   "pytest",
   "pytest-cov",

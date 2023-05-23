@@ -7,6 +7,6 @@ COPY . /usr/app/
 RUN python3 -m pip install .
 
 ENV PYTHONPATH /usr/app
-ENV FLASK_APP /usr/app/perprof_web/app.py
+ENV FLASK_APP /usr/app/perprof_web
 
 ENTRYPOINT ["python", "-m", "flask", "run", "--host=0.0.0.0"]
