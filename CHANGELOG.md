@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [unreleased]
 
+## [0.0.2]
+
 ### Added
 
 - Create Docker image
@@ -24,5 +26,6 @@ and this project adheres to [Semantic Versioning].
 
 <!-- Versions -->
 <!-- markdown-link-check-disable -->
-[unreleased]: https://github.com/abelsiqueira/perprof-web/compare/v0.0.1...HEAD
+[unreleased]: https://github.com/abelsiqueira/perprof-web/compare/v0.0.2...HEAD
+[0.0.2]: https://github.com/abelsiqueira/perprof-web/releases/tag/v0.0.2
 [0.0.1]: https://github.com/abelsiqueira/perprof-web/releases/tag/v0.0.1
